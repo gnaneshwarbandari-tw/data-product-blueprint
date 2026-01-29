@@ -1,10 +1,18 @@
-spec_version: v1
-metadata:
-  name: "{{ cookiecutter.project_name }}"
-  id: "{{ cookiecutter.data_hub_id }}"
-  domain: "{{ cookiecutter.domain }}"
-  owners: ["{{ cookiecutter.team_members }}"]
-
-components:
-  input_ports: []  # User must manually edit this
-  output_ports: [] # User must manually edit this
+{
+  "project_name": "Returns Data Product",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+  "data_product_uuid": "generate_uuid",
+  "domain": ["returns", "logistics", "finance", "inventory"],
+  "team_name": "FreeTrade",
+  "owner_name": "Your Name",
+  "owner_email": "your.email@otto.de",
+  "support_email": "tradeport@otto.de",
+  "teams_channel_url": "https://teams.microsoft.com/...",
+  "purpose_description": "This data product provides details about...",
+  "usage_description": "logistics and returns analysis",
+  "input_port_name": "input-stream",
+  "input_type": ["stream", "table", "api"],
+  "input_contract_uuid": "generate_uuid",
+  "output_port_name": "output-table",
+  "output_contract_uuid": "generate_uuid"
+}
