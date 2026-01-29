@@ -1,5 +1,7 @@
-
 {
-  "project_name": "My Data Product",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}"
+  "project_name": "Data Product Alpha",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+  "domain": ["Finance", "Sales", "Marketing"],
+  "data_hub_id": "DP-{{ cookiecutter.domain.upper() }}-001",
+  "team_members": "user@company.com"
 }
