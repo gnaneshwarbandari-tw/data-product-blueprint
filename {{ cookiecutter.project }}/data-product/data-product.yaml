@@ -1,0 +1,10 @@
+spec_version: v1
+metadata:
+  name: "{{ cookiecutter.project_name }}"
+  id: "{{ cookiecutter.data_hub_id }}"
+  domain: "{{ cookiecutter.domain }}"
+  owners: ["{{ cookiecutter.team_members }}"]
+
+components:
+  input_ports: []  # User must manually edit this
+  output_ports: [] # User must manually edit this
