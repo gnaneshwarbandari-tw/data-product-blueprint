@@ -6,6 +6,7 @@ id: {{ cookiecutter.data_product_uuid }}
 domain: {{ cookiecutter.domain }}
 status: draft
 tenant: otto
+data_product_uuid: {{ cookiecutter.data_product_uuid }}
 
 team:
   name: "{{ cookiecutter.team_name }}"

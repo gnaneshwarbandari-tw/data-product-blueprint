@@ -1,6 +1,7 @@
 {
   "project_name": "Returns Data Product",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+  "data_product_uuid": "550e8400-e29b-41d4-a716-446655440000",
   "domain": ["returns", "logistics", "finance", "inventory"],
   "team_name": "FreeTrade",
   "owner_name": "Vinod Murugesan",
