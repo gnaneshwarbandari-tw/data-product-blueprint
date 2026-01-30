@@ -1,18 +1,60 @@
-{
-  "project_name": "Returns Data Product",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
-  "data_product_uuid": "generate_uuid",
-  "domain": ["returns", "logistics", "finance", "inventory"],
-  "team_name": "FreeTrade",
-  "owner_name": "Your Name",
-  "owner_email": "your.email@otto.de",
-  "support_email": "tradeport@otto.de",
-  "teams_channel_url": "https://teams.microsoft.com/...",
-  "purpose_description": "This data product provides details about...",
-  "usage_description": "logistics and returns analysis",
-  "input_port_name": "input-stream",
-  "input_type": ["stream", "table", "api"],
-  "input_contract_uuid": "generate_uuid",
-  "output_port_name": "output-table",
-  "output_contract_uuid": "generate_uuid"
-}
+apiVersion: v1.0
+kind: DataProduct
+
+name: {{ cookiecutter.project_name }}
+id: {{ cookiecutter.data_product_uuid }}
+domain: {{ cookiecutter.domain }}
+status: draft
+tenant: otto
+
+team:
+  name: "{{ cookiecutter.team_name }}"
+  members:
+    - username: "{{ cookiecutter.owner_email }}"
+      name: "{{ cookiecutter.owner_name }}"
+      role: "owner"
+
+support:
+  - channel: "teams"
+    url: "{{ cookiecutter.teams_channel_url }}"
+  - channel: "email"
+    url: "mailto:{{ cookiecutter.support_email }}"
+
+description:
+  purpose: {{ cookiecutter.purpose_description }}
+  limitations: No known limitations.
+  usage: {{ cookiecutter.usage_description }}
+
+tags: ['{{ cookiecutter.domain }}']
+
+inputPorts:
+  name: {{ cookiecutter.input_port_name }}
+  description: "Input stream for returns data."
+  type: {{ cookiecutter.input_type }}
+  version: 1.0.0
+  contractId: {{ cookiecutter.input_contract_uuid }}
+  tags: ["kafka", "{{ cookiecutter.domain }}", "sadp"]
+  customProperties:
+    - property: "topicName"
+      value: "TBD"
+    - property: "bootstrapServers"
+      value: "TBD"
+    - property: "consumerGroup"
+      value: "TBD"
+
+outputPorts:
+  name: {{ cookiecutter.output_port_name }}
+  description: "Output table for data product in BigQuery."
+  type: table
+  version: 1.0.0
+  contractId: {{ cookiecutter.output_contract_uuid }}
+  tags: ["bigquery", "{{ cookiecutter.domain }}", "sadp"]
+  customProperties:
+    - property: "destination"
+      value: "bigquery"
+    - property: "projectId"
+      value: "${BIGQUERY_OUTPUT_PROJECT_ID}"
+    - property: "datasetId"
+      value: "${BIGQUERY_OUTPUT_DATASET_ID}"
+    - property: "tableId"
+      value: "${BIGQUERY_OUTPUT_TABLE}"
