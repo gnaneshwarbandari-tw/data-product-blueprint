@@ -1,7 +1,17 @@
 {
-  "project_name": "Data Product Alpha",
+  "project_name": "Returns Data Product",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
-  "domain": ["Finance", "Sales", "Marketing"],
-  "data_hub_id": "DP-{{ cookiecutter.domain.upper() }}-001",
-  "team_members": "user@company.com"
+  "domain": ["returns", "logistics", "finance", "inventory"],
+  "team_name": "FreeTrade",
+  "owner_name": "Vinod Murugesan",
+  "owner_email": "vinod.murugesan@fremdpersonal-otto.de",
+  "support_email": "tradeport@otto.de",
+  "teams_channel_url": "https://teams.microsoft.com/l/channel/...",
+  "purpose_description": "This data product provides details about the customer returns in otto.",
+  "usage_description": "logistics and returns analysis",
+  "input_port_name": "boxfish-galapagos-returns-stream",
+  "input_type": ["stream", "table", "api"],
+  "input_contract_uuid": "123e4567-e89b-12d3-a456-426614174000",
+  "output_port_name": "returns-bigquery-table",
+  "output_contract_uuid": "789e4567-e89b-12d3-a456-426614174222"
 }
