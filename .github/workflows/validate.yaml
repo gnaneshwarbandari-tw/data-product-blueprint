@@ -21,17 +21,18 @@ jobs:
       - name: Install Dependencies
         run: pip install jsonschema PyYAML
 
-      - name: Find Data Product Directory
-        id: find-dp
-        run: |
-          DP_DIR=$(find . -name "data-product.yaml" -path "*/data-product/*" | head -1 | xargs dirname | xargs dirname)
-          echo "dp_dir=$DP_DIR" >> $GITHUB_OUTPUT
-          echo "Found data product in: $DP_DIR"
-
       - name: Register Data Product via API
         run: |
-          cd "${{ steps.find-dp.outputs.dp_dir }}"
-          DATA_PRODUCT_JSON=$(python3 -c 'import yaml, json; print(json.dumps(yaml.safe_load(open("data-product/data-product.yaml"))))')
+          # Find the data product YAML file
+          DP_FILE=$(find . -name "data-product.yaml" -path "*/data-product/*" | head -1)
+          
+          if [ -z "$DP_FILE" ]; then
+            echo "❌ Error: data-product.yaml not found"
+            exit 1
+          fi
+          
+          echo "Found data product at: $DP_FILE"
+          DATA_PRODUCT_JSON=$(python3 -c "import yaml, json; print(json.dumps(yaml.safe_load(open('$DP_FILE'))))")
           
           echo "=== Mock API Registration ==="
           echo "Endpoint: https://api.example.com/v1/dataproducts/register"
