@@ -1,0 +1,42 @@
+name: Data Product Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: pip install jsonschema PyYAML
+
+      - name: Find Data Product Directory
+        id: find-dp
+        run: |
+          DP_DIR=$(find . -name "data-product.yaml" -path "*/data-product/*" | head -1 | xargs dirname | xargs dirname)
+          echo "dp_dir=$DP_DIR" >> $GITHUB_OUTPUT
+          echo "Found data product in: $DP_DIR"
+
+      - name: Register Data Product via API
+        run: |
+          cd "${{ steps.find-dp.outputs.dp_dir }}"
+          DATA_PRODUCT_JSON=$(python3 -c 'import yaml, json; print(json.dumps(yaml.safe_load(open("data-product/data-product.yaml"))))')
+          
+          echo "=== Mock API Registration ==="
+          echo "Endpoint: https://api.example.com/v1/dataproducts/register"
+          echo "Method: POST"
+          echo "Payload:"
+          echo "$DATA_PRODUCT_JSON" | python3 -m json.tool
+          echo ""
+          echo "✅ Mock registration successful - Data product would be registered in production"
