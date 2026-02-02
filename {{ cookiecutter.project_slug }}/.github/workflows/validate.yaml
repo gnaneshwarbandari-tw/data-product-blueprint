@@ -1,5 +1,5 @@
 name: Data Product Validation
-
+{% raw %}
 on:
   push:
     branches: [ main ]
@@ -40,3 +40,4 @@ jobs:
           echo "$DATA_PRODUCT_JSON" | python3 -m json.tool
           echo ""
           echo "✅ Mock registration successful - Data product would be registered in production"
+{% endraw %}
