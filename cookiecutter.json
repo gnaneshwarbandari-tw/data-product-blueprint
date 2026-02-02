@@ -1,4 +1,7 @@
 {
+  "_copy_without_render": [
+    ".github/*"
+  ],
   "project_name": "Returns Data Product",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
   "domain": "returns",
