@@ -3,7 +3,7 @@
     ".github/*"
   ],
   "project_name": "Returns Data Product",
-  "_project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
   "domain": "returns",
   "team_name": "FreeTrade",
   "owner_name": "Vinod Murugesan",
