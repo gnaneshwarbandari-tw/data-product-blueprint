@@ -3,7 +3,6 @@
     ".github/*"
   ],
   "project_name": "Returns Data Product",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
   "domain": "returns",
   "team_name": "FreeTrade",
   "owner_name": "Vinod Murugesan",
@@ -14,5 +13,6 @@
   "usage_description": "logistics and returns analysis",
   "input_port_name": "boxfish-galapagos-returns-stream",
   "input_type": ["stream"],
-  "output_port_name": "returns-bigquery-table"
+  "output_port_name": "returns-bigquery-table",
+  "__project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}"
 }
